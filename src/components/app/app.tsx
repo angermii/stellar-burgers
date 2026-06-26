@@ -32,7 +32,6 @@ const App = () => {
   useEffect(() => {
     dispatch(fetchIngredients());
     dispatch(fetchUser());
-    dispatch(fetchOrder());
   }, []);
 
   const onClose = () => {

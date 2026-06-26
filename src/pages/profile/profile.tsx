@@ -39,7 +39,12 @@ export const Profile: FC = () => {
         email: formValue.email,
         password: formValue.password
       })
-    );
+    ).then(() => {
+      setFormValue((prevState) => ({
+        ...prevState,
+        password: ''
+      }));
+    });
   };
 
   const handleCancel = (e: SyntheticEvent) => {

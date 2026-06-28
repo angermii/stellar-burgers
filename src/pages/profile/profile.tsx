@@ -6,7 +6,6 @@ import { fetchUser, updateUser } from '../../services/slices/userSlice';
 export const Profile: FC = () => {
   /** TODO1: взять переменную из стора */
   const dispatch = useDispatch();
-  useSelector((state) => state.user.user);
   const user = useSelector((state) => state.user.user)!;
   useEffect(() => {
     dispatch(fetchUser());
@@ -39,11 +38,13 @@ export const Profile: FC = () => {
         email: formValue.email,
         password: formValue.password
       })
-    ).then(() => {
-      setFormValue((prevState) => ({
-        ...prevState,
-        password: ''
-      }));
+    ).then((result) => {
+      if (result.meta.requestStatus === 'fulfilled') {
+        setFormValue((prevState) => ({
+          ...prevState,
+          password: ''
+        }));
+      }
     });
   };
 
